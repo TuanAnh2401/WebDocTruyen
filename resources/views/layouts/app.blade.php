@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<!-- saved from url=(0021)https://suustore.com/ -->
-<html lang="en">
+<html lang="zxx">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anime | Template</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="{{ asset('assets/bootstrap.min.css') }}" rel="stylesheet">
-
-    <link rel="shortcut icon" href="https://suustore.com/assets/frontend/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('assets/app.css') }}">
-
-    <script>
-        window.SuuTruyen = {
-            baseUrl: 'https://suustore.com',
-            urlCurrent: 'https://suustore.com',
-            csrfToken: '4EebYu2rWivdRk1ET12dyuY0CJjpRERhJynPtvUy'
-        }
-    </script>
-
-    <title>Demo Truyện</title>
-    <meta name="description" content="Đọc truyện online, truyện hay. Demo Truyện luôn tổng hợp và cập nhật các chương truyện một cách nhanh nhất.">
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/plyr.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
 </head>
 
 <body>
@@ -36,17 +32,16 @@
     </main>
     @include('layouts.footer')
 
-    <script src="{{ asset('assets/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/app.js') }}"></script>
-    <script src="{{ asset('assets/common.js') }}"></script>
-
-    <div id="loadingPage" class="loading-full">
-        <div class="loading-full_icon">
-            <div class="spinner-grow"><span class="visually-hidden">Loading...</span></div>
-        </div>
-    </div>
+    
+    <!-- Js Plugins -->
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/player.js') }}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

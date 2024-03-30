@@ -1,89 +1,45 @@
-<div id="footer" class="footer border-top pt-2">
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="page-up">
+        <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+    </div>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-5">
-                <strong>Suu Truyện</strong> - <a title="Đọc truyện online" class="text-dark text-decoration-none"
-                    href="#">Đọc truyện</a> online một cách nhanh nhất. Hỗ trợ mọi thiết bị như
-                di
-                động và máy tính bảng.
+            <div class="col-lg-3">
+                <div class="footer__logo">
+                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                </div>
             </div>
-            <ul class="col-12 col-md-7 list-unstyled d-flex flex-wrap list-tag">
-                <li class="me-1">
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="đam mỹ hài">đam mỹ
-                            hài</a></span>
-                </li>
-                <li>
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="truyện xuyên nhanh">truyện
-                            xuyên
-                            nhanh</a></span>
-                </li>
-                <li class="me-1">
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="đam mỹ hài">đam mỹ
-                            hài</a></span>
-                </li>
-                <li>
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="truyện xuyên nhanh">truyện
-                            xuyên
-                            nhanh</a></span>
-                </li>
-                <li class="me-1">
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="đam mỹ hài">đam mỹ
-                            hài</a></span>
-                </li>
-                <li>
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="truyện xuyên nhanh">truyện
-                            xuyên
-                            nhanh</a></span>
-                </li>
-                <li class="me-1">
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="đam mỹ hài">đam mỹ
-                            hài</a></span>
-                </li>
-                <li>
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="truyện xuyên nhanh">truyện
-                            xuyên
-                            nhanh</a></span>
-                </li>
-                <li class="me-1">
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="đam mỹ hài">đam mỹ
-                            hài</a></span>
-                </li>
-                <li>
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="truyện xuyên nhanh">truyện
-                            xuyên
-                            nhanh</a></span>
-                </li>
-                <li class="me-1">
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="đam mỹ hài">đam mỹ
-                            hài</a></span>
-                </li>
-                <li>
-                    <span class="badge text-bg-light"><a class="text-dark text-decoration-none"
-                            href="#" title="truyện xuyên nhanh">truyện
-                            xuyên
-                            nhanh</a></span>
-                </li>
-            </ul>
+            <div class="col-lg-6">
+                <div class="footer__nav">
+                    <ul>
+                        <li class="active"><a href="./index.html">Homepage</a></li>
+                        <li><a href="./categories.html">Categories</a></li>
+                        <li><a href="./blog.html">Our Blog</a></li>
+                        <li><a href="#">Contacts</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 
-            <div class="col-12"> <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
-                        alt="Creative Commons License" style="border-width:0;margin-bottom: 10px"
-                        src="./assets/images/88x31.png"></a><br>
-                <p>Website hoạt động dưới Giấy phép truy cập mở <a rel="license"
-                        class="text-decoration-none text-dark hover-title"
-                        href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0
-                        International License</a></p>
             </div>
         </div>
     </div>
+</footer>
+<!-- Footer Section End -->
+
+<!-- Search model Begin -->
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch"><i class="icon_close"></i></div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
+    </div>
 </div>
+<!-- Search model end -->
