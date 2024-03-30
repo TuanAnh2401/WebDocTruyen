@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('episodes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('movie_id');
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('username')->unique();
-            $table->string('avatar')->nullable();
+            $table->string('link');
+            $table->boolean('isBlock')->default(false);
+            $table->boolean('isDelete')->default(false);
             $table->integer('money')->default(0);
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('episodes');
     }
 };
