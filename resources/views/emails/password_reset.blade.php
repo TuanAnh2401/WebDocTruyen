@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Reset Password</title>
+<đầu>
+     <title>Đặt lại mật khẩu</title>
 </head>
-<body>
-    <h2>Reset Password</h2>
-    <p>You are receiving this email because we received a password reset request for your account.</p>
-    <p>Please click the button below to reset your password:</p>
-    <a href="{{ $resetUrl }}">Reset Password</a>
-    <p>If you did not request a password reset, no further action is required.</p>
+<cơ thể>
+     <h2>Đặt lại mật khẩu</h2>
+     <p>Bạn nhận được email này vì chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn.</p>
+     <p>Vui lòng nhấp vào nút bên dưới để đặt lại mật khẩu của bạn:</p>
+     <a href="{{ $resetUrl }}">Đặt lại mật khẩu</a>
+     <p>Nếu bạn không yêu cầu đặt lại mật khẩu thì không cần thực hiện thêm hành động nào.</p>
 </body>
 </html>
