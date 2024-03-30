@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
@@ -7,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Đăng ký</h2>
+                        <h2>Đổi mật khẩu</h2>
                         <p>Chào mừng bạn đến với CAP Anime.</p>
                     </div>
                 </div>
@@ -16,46 +15,33 @@
     </section>
     <!-- Normal Breadcrumb End -->
 
-    <!-- Signup Section Begin -->
+    <!-- Change Password Section Begin -->
     <section class="signup spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login__form">
-                        <h3>Đăng ký</h3>
-                        <form method="POST" action="{{ route('register') }}">
+                        <h3>Đổi mật khẩu</h3>
+                        <form method="POST" action="{{ route('password.update') }}">
                             @csrf
                             @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                            <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        {{ $error }}
+                                    @endforeach
+                            </div>
                             @endif
-
+                            <input type="hidden" name="token" value="{{ $token }}">
+                            <input type="hidden" name="email" value="{{ $email }}">
                             <div class="input__item">
-                                <input type="text" name="email" placeholder="Email" value="{{ old('email') }}" required>
-                                <span class="icon_mail"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="text" name="username" placeholder="Tên tài khoản" value="{{ old('username') }}" required>
-                                <span class="icon_profile"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="text" name="name" placeholder="Tên của bạn" value="{{ old('name') }}" required>
-                                <span class="icon_profile"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="password" name="password" placeholder="Mật khẩu" required>
+                                <input type="password" name="password" placeholder="Mật khẩu mới" required>
                                 <span class="icon_lock"></span>
                             </div>
                             <div class="input__item">
-                                <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu" required>
+                                <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu mới" required>
                                 <span class="icon_lock"></span>
                             </div>
-                            <button type="submit" class="site-btn">Đăng ký</button>
+                            <button type="submit" class="site-btn">Đổi mật khẩu</button>
                         </form>
                         <h5>Đã có tài khoản? <a href="{{ route('login') }}">Đăng nhập!</a></h5>
                     </div>
@@ -72,5 +58,5 @@
             </div>
         </div>
     </section>
-    <!-- Signup Section End -->
+    <!-- Change Password Section End -->
 @endsection

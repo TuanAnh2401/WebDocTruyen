@@ -99,3 +99,34 @@
      });
 
 })(jQuery);
+// Lắng nghe sự kiện click trên toàn bộ tài liệu (document)
+document.addEventListener("click", function(event) {
+    var profileIcon = document.getElementById("profileIcon");
+    var dropdownMenu = document.getElementById("profileDropdown");
+
+    // Kiểm tra xem phần tử được nhấp có thuộc menu dropdown hay không
+    var isClickInsideDropdown = dropdownMenu.contains(event.target) || profileIcon.contains(event.target);
+
+    // Nếu không, ẩn menu dropdown
+    if (!isClickInsideDropdown) {
+        dropdownMenu.classList.remove("active");
+    }
+});
+
+// Lắng nghe sự kiện click vào icon thông tin tài khoản
+document.getElementById("profileIcon").addEventListener("click", function(event) {
+    event.stopPropagation(); // Ngăn chặn sự kiện click từ việc lan truyền ra ngoài
+
+    var dropdownMenu = document.getElementById("profileDropdown");
+
+    // Kiểm tra xem dropdown-menu có hiển thị hay không
+    var isShown = dropdownMenu.classList.contains("active");
+
+    // Nếu đang hiển thị, ẩn đi; nếu đang ẩn, hiển thị lên
+    if (isShown) {
+        dropdownMenu.classList.remove("active");
+    } else {
+        dropdownMenu.classList.add("active");
+    }
+});
+

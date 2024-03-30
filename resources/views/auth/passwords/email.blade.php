@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Đăng ký</h2>
+                        <h2>Quên mật khẩu</h2>
                         <p>Chào mừng bạn đến với CAP Anime.</p>
                     </div>
                 </div>
@@ -22,40 +22,24 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login__form">
-                        <h3>Đăng ký</h3>
-                        <form method="POST" action="{{ route('register') }}">
+                        <h3>Quên mật khẩu</h3>
+                        <form method="POST" action="{{ route('password.email') }}">
                             @csrf
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
                                 </div>
                             @endif
-
+                            @error('email')
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             <div class="input__item">
-                                <input type="text" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                                <input type="email" name="email" placeholder="Email của bạn" value="{{ old('email') }}" required>
                                 <span class="icon_mail"></span>
                             </div>
-                            <div class="input__item">
-                                <input type="text" name="username" placeholder="Tên tài khoản" value="{{ old('username') }}" required>
-                                <span class="icon_profile"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="text" name="name" placeholder="Tên của bạn" value="{{ old('name') }}" required>
-                                <span class="icon_profile"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="password" name="password" placeholder="Mật khẩu" required>
-                                <span class="icon_lock"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu" required>
-                                <span class="icon_lock"></span>
-                            </div>
-                            <button type="submit" class="site-btn">Đăng ký</button>
+                            <button type="submit" class="site-btn">Gửi liên kết đặt lại mật khẩu</button>
                         </form>
                         <h5>Đã có tài khoản? <a href="{{ route('login') }}">Đăng nhập!</a></h5>
                     </div>
