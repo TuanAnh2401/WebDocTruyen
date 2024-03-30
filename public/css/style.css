@@ -1962,12 +1962,7 @@ ol {
 	top: 2px;
 	left: -1px;
 }
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-	width: 100%;
-}
+
 .footer__nav {
 	text-align: center;
 }
@@ -2345,3 +2340,20 @@ ol {
 		padding: 18px 20px 20px;
 	}
 }
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+.dropdown-menu a {
+    color: black; 
+}
+
+.dropdown-menu a:hover {
+    font-weight: bold; 
+}
+
+
+

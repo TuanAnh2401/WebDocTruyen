@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a href="./index.html">
+                    <a href="./">
                         <img src="img/logo.png" alt="">
                     </a>
                 </div>
@@ -37,10 +37,29 @@
             </div>
             <div class="col-lg-2">
                 <div class="header__right">
-                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="./login.html"><span class="icon_profile"></span></a>
+                    <div class="d-flex align-items-center"> 
+                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                        <div class="menu">
+                            @guest
+                                <a href="{{ route('login') }}"><span class="icon_profile"></span></a>
+                            @else
+                                <div class="dropdown">
+                                    <a id="profileIcon" class="dropdown-toggle" role="button">
+                                        <span class="icon_profile"></span>
+                                    </a>
+                                    <div id="profileDropdown" class="dropdown-menu" aria-labelledby="profileIcon">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Đăng xuất</button>
+                                        </form>
+                                    </div>                            
+                                </div>                        
+                            @endguest
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
         <div id="mobile-menu-wrap"></div>
     </div>
