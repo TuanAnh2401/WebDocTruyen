@@ -23,5 +23,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
-
+Route::get('/login/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('login.provider');
+Route::get('/login/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])->name('login.callback');
+Route::get('/forgot-password', [AuthController::class, 'showPasswordResetForm'])->name('password.request');
+Route::post('/forgot-password', [AuthController::class, 'sendPasswordResetEmail'])->name('password.email');
+Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [AuthController::class, 'updatePassword'])->name('password.update');
+Route::post('/payment-vnpay', [VnPayController::class, 'create'])->name('payment.vnpay');
+Route::get('/return-vnpay', [VnPayController::class, 'handle'])->name('vnpay.return');
 

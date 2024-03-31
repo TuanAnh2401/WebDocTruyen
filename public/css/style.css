@@ -1962,12 +1962,7 @@ ol {
 	top: 2px;
 	left: -1px;
 }
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-	width: 100%;
-}
+
 .footer__nav {
 	text-align: center;
 }
@@ -2345,3 +2340,40 @@ ol {
 		padding: 18px 20px 20px;
 	}
 }
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+.dropdown-menu a {
+    color: black; 
+}
+
+.dropdown-menu a:hover {
+    font-weight: bold; 
+}
+
+#vipForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+.custom-header {
+    background-color: #f1f1f1;
+    padding: 10px; 
+}
+
+.price-button.selected {
+    background-color: #ADD8E6;
+}
+

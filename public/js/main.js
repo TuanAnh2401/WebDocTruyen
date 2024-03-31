@@ -99,3 +99,72 @@
      });
 
 })(jQuery);
+
+document.addEventListener("click", function(event) {
+    var profileIcon = document.getElementById("profileIcon");
+    var dropdownMenu = document.getElementById("profileDropdown");
+
+    var isClickInsideDropdown = dropdownMenu.contains(event.target) || profileIcon.contains(event.target);
+
+    if (!isClickInsideDropdown) {
+        dropdownMenu.classList.remove("active");
+    }
+});
+
+document.getElementById("profileIcon").addEventListener("click", function(event) {
+    event.stopPropagation();
+
+    var dropdownMenu = document.getElementById("profileDropdown");
+
+    var isShown = dropdownMenu.classList.contains("active");
+
+    if (isShown) {
+        dropdownMenu.classList.remove("active");
+    } else {
+        dropdownMenu.classList.add("active");
+    }
+});
+
+document.getElementById('vipMenu').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    document.getElementById('vipForm').style.display = 'block';
+});
+
+document.querySelector('.close-button').addEventListener('click', function() {
+    document.getElementById('vipForm').style.display = 'none';
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var priceButtons = document.querySelectorAll('.price-button');
+    var priceDetailContent = document.getElementById('priceDetailContent');
+    var priceDetail = document.getElementById('priceDetail');
+    var paymentForm = document.getElementById('paymentForm');
+    var amountInput = document.getElementById('amount');
+
+    priceButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var detail = this.getAttribute('data-detail');
+            var priceSale = parseFloat(this.getAttribute('data-price-sale'));
+            var price = parseFloat(this.getAttribute('data-price'));
+
+            if (priceSale) {
+                amountInput.value = priceSale.toFixed(2);
+            } else {
+                amountInput.value = price.toFixed(2); 
+            }
+
+            priceDetailContent.innerText = detail;
+            priceDetail.style.display = 'block';
+            priceButtons.forEach(function(btn) {
+                btn.classList.remove('selected');
+            });
+            this.classList.add('selected');
+        });
+    });
+});
+
+
+
+
+
+
