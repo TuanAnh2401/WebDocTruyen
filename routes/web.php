@@ -30,6 +30,11 @@ Route::get('/forgot-password', [AuthController::class, 'showPasswordResetForm'])
 Route::post('/forgot-password', [AuthController::class, 'sendPasswordResetEmail'])->name('password.email');
 Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/password/reset', [AuthController::class, 'updatePassword'])->name('password.update');
+
+Route::get('/profile', [AuthController::class, 'showProfile'])->name('user.profile');
+Route::put('/profile/update', [AuthController::class, 'updateProfile'])->name('user.profile.update');
+Route::get('/change-password', [AuthController::class, 'showPasswordChangeForm'])->name('password.change');
+Route::post('/password/update', [AuthController::class, 'resetPassword'])->name('password.update');
+
 Route::post('/payment-vnpay', [VnPayController::class, 'create'])->name('payment.vnpay');
 Route::get('/return-vnpay', [VnPayController::class, 'handle'])->name('vnpay.return');
-

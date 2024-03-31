@@ -138,31 +138,68 @@ document.addEventListener('DOMContentLoaded', function() {
     var priceButtons = document.querySelectorAll('.price-button');
     var priceDetailContent = document.getElementById('priceDetailContent');
     var priceDetail = document.getElementById('priceDetail');
-    var paymentForm = document.getElementById('paymentForm');
     var amountInput = document.getElementById('amount');
+    var priceIdInput = document.getElementById('price_id');
 
     priceButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             var detail = this.getAttribute('data-detail');
+            var priceId = this.getAttribute('data-price-id');
             var priceSale = parseFloat(this.getAttribute('data-price-sale'));
             var price = parseFloat(this.getAttribute('data-price'));
+
+            priceDetailContent.innerText = detail;
+            priceDetail.style.display = 'block';
 
             if (priceSale) {
                 amountInput.value = priceSale.toFixed(2);
             } else {
-                amountInput.value = price.toFixed(2); 
+                amountInput.value = price.toFixed(2);
             }
+            priceIdInput.value = priceId;
 
-            priceDetailContent.innerText = detail;
-            priceDetail.style.display = 'block';
             priceButtons.forEach(function(btn) {
                 btn.classList.remove('selected');
             });
+            
             this.classList.add('selected');
         });
     });
 });
+function formatPrice(price) {
+    var number = parseFloat(price);
+    var formattedPrice = number.toFixed(0);
+    formattedPrice = formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return formattedPrice;
+}
 
+var priceInfoElements = document.querySelectorAll('.price-info');
+priceInfoElements.forEach(function(element) {
+    var originalPriceElement = element.querySelector('.original-price');
+    if (originalPriceElement) {
+        var originalPrice = originalPriceElement.textContent;
+        originalPriceElement.textContent = formatPrice(originalPrice);
+    }
+
+    var salePriceElement = element.querySelector('.sale-price');
+    if (salePriceElement) {
+        var salePrice = salePriceElement.textContent;
+        salePriceElement.textContent = formatPrice(salePrice);
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('avatar-input').addEventListener('change', function(event) {
+        var preview = document.getElementById('avatar-preview');
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
 
 
 

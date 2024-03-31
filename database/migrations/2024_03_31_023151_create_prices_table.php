@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('detail')->nullable();
             $table->decimal('price', 10, 2);
             $table->decimal('price_sale', 10, 2)->nullable();
+            $table->integer('number_of_days')->default(0);
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });

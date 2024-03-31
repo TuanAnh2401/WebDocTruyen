@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -133,4 +135,70 @@ class AuthController extends Controller
             ? redirect('/login')->with('status', 'Mật khẩu của bạn đã được đặt lại!')
             : back()->withErrors(['email' => ['Đã xảy ra lỗi khi đặt lại mật khẩu.']]);
     }
+    public function showProfile()
+    {
+        $user = Auth::user();
+        return view('auth.profile', compact('user'));
+    }
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'name.required' => 'Vui lòng nhập tên.',
+            'avatar.image' => 'File phải là một hình ảnh.',
+            'avatar.mimes' => 'Chỉ chấp nhận các định dạng hình ảnh JPEG, PNG, JPG hoặc GIF.',
+            'avatar.max' => 'Dung lượng tối đa của ảnh là 2MB.',
+        ]);
+
+        $user = User::findOrFail(Auth::id());
+
+        $user->name = $request->name;
+
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar) {
+                File::delete(public_path('storage/avatars/' . $user->avatar));
+            }
+
+            $avatarName = uniqid() . '.' . $request->file('avatar')->getClientOriginalExtension();
+            $request->file('avatar')->move(public_path('storage/avatars'), $avatarName);
+
+            $user->avatar = $avatarName;
+        }
+
+        $user->save();
+
+        $request->user()->name = $user->name;
+        $request->user()->avatar = $user->avatar;
+
+        return redirect()->route('user.profile')->with('success', 'Cập nhật thông tin tài khoản thành công!');
+    }
+    public function showPasswordChangeForm()
+    {
+        return view('auth.change-password');
+    }
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed|min:6',
+        ], [
+            'current_password.required' => 'Vui lòng nhập mật khẩu hiện tại',
+            'password.required' => 'Vui lòng nhập mật khẩu mới',
+            'password.confirmed' => 'Mật khẩu xác nhận không khớp',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+        ]);
+    
+        $user = User::findOrFail(Auth::id());
+    
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Mật khẩu hiện tại không đúng']);
+        }
+    
+        $user->password = Hash::make($request->password);
+        $user->save();
+    
+        return redirect()->route('home')->with('success', 'Mật khẩu đã được cập nhật thành công');
+    }    
 }
