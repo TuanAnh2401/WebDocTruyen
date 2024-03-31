@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('link');
             $table->text('detail');
+            
             $table->boolean('isDelete')->default(false);
             $table->timestamps();
         });

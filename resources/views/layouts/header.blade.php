@@ -19,14 +19,13 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="./index.html">Homepage</a></li>
-                            <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                            <li><a href="#">Categories <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
-                                    <li><a href="./categories.html">Categories</a></li>
-                                    <li><a href="./anime-details.html">Anime Details</a></li>
-                                    <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                    <li><a href="./signup.html">Sign Up</a></li>
-                                    <li><a href="./login.html">Login</a></li>
+                                @if(isset($genres))
+                                    @foreach ($genres as $genre)
+                                    <li><a href="#">{{ $genre->name }}</a></li>
+                                    @endforeach
+                                @endif
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Our Blog</a></li>
