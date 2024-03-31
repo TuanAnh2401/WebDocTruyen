@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class SocialAuthController extends Controller
 {
@@ -22,20 +23,19 @@ class SocialAuthController extends Controller
             return redirect('/login')->with('error', 'Đã xảy ra lỗi khi đăng nhập từ ' . ucfirst($provider) . '.');
         }
 
-        $user = User::where('email', $socialiteUser->getEmail())->first();
+        $randomPassword = Str::random(16);
 
-        if (!$user) {
-            $user = new User();
-            $user->name = $socialiteUser->getName();
-            $user->username = $socialiteUser->getEmail();
-            $user->email = $socialiteUser->getEmail();
-            $user->password = bcrypt($socialiteUser->getEmail());
-            $user->save();
-        }
+        $user = User::firstOrCreate(
+            ['email' => $socialiteUser->getEmail()],
+            [
+                'name' => $socialiteUser->getName(),
+                'username' => $socialiteUser->getEmail(),
+                'email' => $socialiteUser->getEmail(),
+                'password' => bcrypt($randomPassword)
+            ]
+        );
 
         Auth::login($user);
-
         return redirect('/')->with('success', 'Đăng nhập thành công!');
     }
 }
-

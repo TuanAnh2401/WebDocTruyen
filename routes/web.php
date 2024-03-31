@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\VnPayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,6 @@ Route::get('/forgot-password', [AuthController::class, 'showPasswordResetForm'])
 Route::post('/forgot-password', [AuthController::class, 'sendPasswordResetEmail'])->name('password.email');
 Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/password/reset', [AuthController::class, 'updatePassword'])->name('password.update');
+Route::post('/payment-vnpay', [VnPayController::class, 'create'])->name('payment.vnpay');
+Route::get('/return-vnpay', [VnPayController::class, 'handle'])->name('vnpay.return');
 
