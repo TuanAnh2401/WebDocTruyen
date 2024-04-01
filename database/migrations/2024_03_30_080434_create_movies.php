@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('vote')->nullable();
             $table->integer('star')->nullable();
             $table->foreignId('type_id')->constrained('film_formats');
+            $table->integer('quantity')->default(1);
             $table->boolean('isDelete')->default(false);
             $table->timestamps();
         });
