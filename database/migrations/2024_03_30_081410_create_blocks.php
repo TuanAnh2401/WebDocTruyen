@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->unsignedBigInteger('episode_id')->nullable();
             $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
+            $table->string('link');
             $table->boolean('isBlock')->default(false);
             $table->boolean('isDelete')->default(false);
             $table->timestamps();
