@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\VnPayController;
+use App\Models\Movie;
+use App\Http\Controllers\MovieController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +21,8 @@ use App\Http\Controllers\SlideController;
 */
 
 
-Route::get('/', [GenreController::class, 'index']);
-Route::get('/', [SlideController::class, 'index']);
+
+Route::get('/', [MovieController::class, 'index']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
