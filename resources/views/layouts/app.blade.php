@@ -7,7 +7,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <title>CAP Anime</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,20 +38,20 @@
                 @foreach ($prices as $price)
                 <div class="col-md-{{ 12 / count($prices) }} mb-3">
                     <button class="price-button btn btn-outline-primary w-100" 
-                            data-detail="{{ $price->detail}}" 
-                            data-price="{{ $price->price }}"
-                            @if ($price->price_sale)
-                                data-price-sale="{{ $price->price_sale }}"
-                            @endif
-                    >
+                        data-detail="{{ $price->detail}}" 
+                        data-price="{{ $price->price }}"
+                        data-price-sale="{{ $price->price_sale }}"
+                        data-price-id="{{ $price->id }}">
                         <h3>{{ $price->name }}</h3>
                         @if ($price->price_sale)
-                        <p class="mb-0">
-                            <del>{{ $price->price }}</del>
-                            <span class="text-danger">{{ $price->price_sale }}</span>
-                        </p>
+                            <p class="mb-0 price-info">
+                                <del class="original-price">{{ $price->price }}</del>
+                                <span class="text-danger sale-price">{{ $price->price_sale }}</span>
+                            </p>
                         @else
-                        <p class="mb-0">{{ $price->price }}</p>
+                            <p class="mb-0 price-info">
+                                <span class="original-price">{{ $price->price }}</span>
+                            </p>
                         @endif
                     </button>
                 </div>
@@ -64,18 +64,29 @@
                     </div>
                 </div>
             </div>
-            @if (session()->has('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            @if ($errors->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             @endif
+            
+            @if ($errors->has('warning'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ $errors->first('warning') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+        
             <div class="text-center mt-3">
                 <form id="paymentForm" action="{{ route('payment.vnpay') }}" method="POST">
                     @csrf
                     <input type="hidden" name="amount" id="amount" value="0">
+                    <input type="hidden" name="price_id" id="price_id" value="">
                     <button type="submit" class="btn btn-success">Đăng ký</button>
                 </form>
             </div>
