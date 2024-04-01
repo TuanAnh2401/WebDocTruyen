@@ -13,13 +13,8 @@ return new class extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('movie_id');
-            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->string('name');
-            $table->string('link');
-            $table->boolean('isBlock')->default(false);
             $table->boolean('isDelete')->default(false);
-            $table->integer('money')->default(0);
             $table->timestamps();
         });
         

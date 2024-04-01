@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blocks', function (Blueprint $table) {
+        Schema::create('ct_movie', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('movie_id')->nullable();
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->unsignedBigInteger('episode_id')->nullable();
             $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('isBlock')->default(false);
+            $table->boolean('isDelete')->default(false);
             $table->timestamps();
         });
         
