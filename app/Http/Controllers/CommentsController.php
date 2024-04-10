@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comments;
 use Illuminate\Http\Request;
-use App\Models\Genre;
-use App\Models\Movie;
 
-class GenreController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $genres = Genre::all();
-        return view('index', compact('genres'));
+        //
     }
 
     /**
@@ -30,25 +28,33 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'You need to login to comment.');
+        }
+
+        // Kiểm tra và lưu trữ comment
+        $request->validate([
+            'content' => 'required|string',
+            'movie_id' => 'required|exists:movies,id',
+        ]);
+
+        Comments::create([
+            'user_id' => auth()->user()->id,
+            'movie_id' => $request->movie_id,
+            'content' => $request->content,
+        ]);
+
+        return back()->with('success', 'Your comment has been posted successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        // Lấy thông tin về thể loại từ ID
-        $genre = Genre::findOrFail($id);
-    
-        // Lấy danh sách các movie thuộc thể loại đã chọn
-        $movies = $genre->movies;
-    
-        // Trả về view hiển thị danh sách movie thuộc thể loại đã chọn
-        return view('category', compact('movies', 'genre'));
-
+        //
     }
-    
 
     /**
      * Show the form for editing the specified resource.
@@ -74,6 +80,4 @@ class GenreController extends Controller
         //
     }
 
-
-    
-}
+}  

@@ -14,4 +14,8 @@ class Genre extends Model
     protected $casts = [
         'isDelete' => 'boolean',
     ];
+    public function movies()
+    {
+        return $this->belongsToMany(Movie::class, 'movie_genres', 'genre_id', 'movie_id');
+    }
 }

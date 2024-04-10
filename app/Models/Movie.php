@@ -12,4 +12,30 @@ class Movie extends Model
     {
         return $this->belongsToMany(Genre::class, 'movie_genres', 'movie_id', 'genre_id');
     }
+    public function episodes()
+    {
+        return $this->belongsToMany(Episode::class, 'ct_movie', 'movie_id', 'episode_id')->withPivot('link');
+    }
+    public function studio()
+    {
+        return $this->belongsTo(Studio::class, 'studio_id');
+    }
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
+    public function quality()
+    {
+        return $this->belongsTo(Quality::class, 'quality_id');
+    }
+    public function filmformat()
+    {
+        return $this->belongsTo(FilmFormat::class, 'type_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
+
+    
 }

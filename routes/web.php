@@ -8,7 +8,7 @@ use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\VnPayController;
 use App\Models\Movie;
 use App\Http\Controllers\MovieController;
-
+use App\Http\Controllers\CommentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +19,6 @@ use App\Http\Controllers\MovieController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 
 
 Route::get('/', [MovieController::class, 'index']);
@@ -42,3 +41,14 @@ Route::post('/password/update', [AuthController::class, 'resetPassword'])->name(
 
 Route::post('/payment-vnpay', [VnPayController::class, 'create'])->name('payment.vnpay');
 Route::get('/return-vnpay', [VnPayController::class, 'handle'])->name('vnpay.return');
+
+Route::get('/movies/{id}/watching', [MovieController::class, 'watching'])->name('movies.watching');
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('/genres/{id}', [GenreController::class, 'show'])->name('genres.show');
+Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
+
+
+
+
+
+
