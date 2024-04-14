@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\CtVip;
 use App\Models\Price;
+use App\Models\Role;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
@@ -44,6 +45,10 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        $userRole = Role::where('name', 'user')->first();
+        $user->role_id = $userRole->id;
+        $user->save();
 
         Auth::login($user);
 
