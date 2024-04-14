@@ -127,35 +127,29 @@ document.getElementById("profileIcon").addEventListener("click", function(event)
 
 document.getElementById('vipMenu').addEventListener('click', function(event) {
     event.preventDefault(); 
+    vipForm.classList.toggle('active');
     document.getElementById('vipForm').style.display = 'block';
 });
 
-document.querySelector('.close-button').addEventListener('click', function() {
+document.getElementById('vipForm').querySelector('.close-button').addEventListener('click', function() {
     document.getElementById('vipForm').style.display = 'none';
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var priceButtons = document.querySelectorAll('.price-button');
     var priceDetailContent = document.getElementById('priceDetailContent');
     var priceDetail = document.getElementById('priceDetail');
-    var amountInput = document.getElementById('amount');
     var priceIdInput = document.getElementById('price_id');
 
     priceButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             var detail = this.getAttribute('data-detail');
             var priceId = this.getAttribute('data-price-id');
-            var priceSale = parseFloat(this.getAttribute('data-price-sale'));
-            var price = parseFloat(this.getAttribute('data-price'));
 
             priceDetailContent.innerText = detail;
             priceDetail.style.display = 'block';
 
-            if (priceSale) {
-                amountInput.value = priceSale.toFixed(2);
-            } else {
-                amountInput.value = price.toFixed(2);
-            }
             priceIdInput.value = priceId;
 
             priceButtons.forEach(function(btn) {
@@ -169,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function formatPrice(price) {
     var number = parseFloat(price);
     var formattedPrice = number.toFixed(0);
-    formattedPrice = formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    formattedPrice = formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ".")+"đ";
     return formattedPrice;
 }
 
@@ -188,17 +182,53 @@ priceInfoElements.forEach(function(element) {
     }
 });
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('avatar-input').addEventListener('change', function(event) {
-        var preview = document.getElementById('avatar-preview');
-        var file = event.target.files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+    var avatarInput = document.getElementById('avatar-input');
+    if (avatarInput) {
+        avatarInput.addEventListener('change', function(event) {
+            var preview = document.getElementById('avatar-preview');
+            var file = event.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var paymentForm = document.getElementById('paymentForm');
+
+    if (paymentForm) {
+        paymentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(paymentForm);
+
+            fetch(paymentForm.action, {
+                method: paymentForm.method,
+                body: formData
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if (data.error) {
+                    alert(data.error);
+                } else if (data.warning) {
+                    alert(data.warning);
+                } else if (data.redirect_url) {
+                    window.location.href = data.redirect_url;
+                } else {
+                    console.error('Response không chứa thông tin cần thiết.');
+                }
+            })
+            .catch(function(error) {
+                console.error('Đã xảy ra lỗi:', error);
+            });
+        });
+    }
 });
 
 

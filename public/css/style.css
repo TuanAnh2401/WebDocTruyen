@@ -2419,3 +2419,30 @@ ol {
 .avatar-label i {
 	font-size: 20px;
 }
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white; /* Đặt màu chữ trắng */
+}
+
+.table th, .table td {
+    border: 1px solid white; 
+    padding: 8px;
+}
+
+.table th {
+    background-color: black; 
+    text-align: left;
+}
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: #fff;
+}
+

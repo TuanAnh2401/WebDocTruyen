@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\VnPayController;
+use App\Http\Controllers\CancelSubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,5 @@ Route::post('/password/update', [AuthController::class, 'resetPassword'])->name(
 
 Route::post('/payment-vnpay', [VnPayController::class, 'create'])->name('payment.vnpay');
 Route::get('/return-vnpay', [VnPayController::class, 'handle'])->name('vnpay.return');
+
+Route::post('/cancel-subscription', [CancelSubscriptionController::class, 'cancel'])->name('cancel.subscription');

@@ -28,69 +28,8 @@
     @include('layouts.header')
 
     <main>
-        @yield('content')
-        <div id="vipForm" class="container mt-3">
-            <div class="custom-header d-flex justify-content-between align-items-center mb-3">
-                <h2 class="mr-auto text-dark">Đăng ký gói VIP</h2>
-                <span class="close-button btn btn-danger">&times;</span>
-            </div>
-            <div class="price-list row">
-                @foreach ($prices as $price)
-                <div class="col-md-{{ 12 / count($prices) }} mb-3">
-                    <button class="price-button btn btn-outline-primary w-100" 
-                        data-detail="{{ $price->detail}}" 
-                        data-price="{{ $price->price }}"
-                        data-price-sale="{{ $price->price_sale }}"
-                        data-price-id="{{ $price->id }}">
-                        <h3>{{ $price->name }}</h3>
-                        @if ($price->price_sale)
-                            <p class="mb-0 price-info">
-                                <del class="original-price">{{ $price->price }}</del>
-                                <span class="text-danger sale-price">{{ $price->price_sale }}</span>
-                            </p>
-                        @else
-                            <p class="mb-0 price-info">
-                                <span class="original-price">{{ $price->price }}</span>
-                            </p>
-                        @endif
-                    </button>
-                </div>
-                @endforeach
-            </div>
-            <div id="priceDetail" class="row mt-3" style="display: none;">
-                <div class="col-md-12">
-                    <div class="price-detail bg-light p-3">
-                        <p id="priceDetailContent"></p>
-                    </div>
-                </div>
-            </div>
-            @if ($errors->has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ $errors->first('error') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-            
-            @if ($errors->has('warning'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    {{ $errors->first('warning') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-        
-            <div class="text-center mt-3">
-                <form id="paymentForm" action="{{ route('payment.vnpay') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="amount" id="amount" value="0">
-                    <input type="hidden" name="price_id" id="price_id" value="">
-                    <button type="submit" class="btn btn-success">Đăng ký</button>
-                </form>
-            </div>
-        </div>           
+        @yield('content')      
+        @include('layouts.vnpay')     
     </main>
     @include('layouts.footer')
     <!-- Js Plugins -->
@@ -102,6 +41,13 @@
     <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        var successMessage = @json(Session::get('success'));
+        if (successMessage) {
+            alert(successMessage);
+        }
+    </script>
+    
 </body>
 
 </html>

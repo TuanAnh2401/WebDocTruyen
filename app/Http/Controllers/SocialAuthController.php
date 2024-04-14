@@ -36,6 +36,6 @@ class SocialAuthController extends Controller
         );
 
         Auth::login($user);
-        return redirect('/')->with('success', 'Đăng nhập thành công!');
+        return redirect('/');
     }
 }

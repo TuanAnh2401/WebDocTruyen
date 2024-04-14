@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\CtVip;
+use App\Models\Price;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\File;
@@ -11,7 +14,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Hiển thị form đăng ký
     public function showRegistrationForm()
     {
         return view('auth.register');
@@ -138,8 +140,19 @@ class AuthController extends Controller
     public function showProfile()
     {
         $user = Auth::user();
-        return view('auth.profile', compact('user'));
+        $name = null;
+        $endDate = null;
+        $ctVip = CtVip::where('user_id', $user->id)->where('is_deleted', false)->first();
+        if ($ctVip) {
+            $price = Price::find($ctVip->price_id);
+            if ($price) {
+                $name = $price->name;
+                $endDate = $ctVip->end_date;
+            }
+        }
+        return view('auth.profile', compact('user', 'name', 'endDate'));
     }
+
     public function updateProfile(Request $request)
     {
         $request->validate([
@@ -189,16 +202,16 @@ class AuthController extends Controller
             'password.confirmed' => 'Mật khẩu xác nhận không khớp',
             'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
         ]);
-    
+
         $user = User::findOrFail(Auth::id());
-    
+
         if (!Hash::check($request->current_password, $user->password)) {
             return redirect()->back()->withErrors(['current_password' => 'Mật khẩu hiện tại không đúng']);
         }
-    
+
         $user->password = Hash::make($request->password);
         $user->save();
-    
+
         return redirect()->route('home')->with('success', 'Mật khẩu đã được cập nhật thành công');
-    }    
+    }
 }
