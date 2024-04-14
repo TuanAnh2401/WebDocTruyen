@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\VnPayController;
+use App\Http\Controllers\CancelSubscriptionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MovieAdminController;
 use App\Http\Controllers\CtMovieAdminController;

@@ -48,7 +48,7 @@
                                         <span class="icon_profile"></span>
                                     </a>
                                     <div id="profileDropdown" class="dropdown-menu" aria-labelledby="profileIcon">
-                                        <a href="{{ route('user.profile') }}" class="dropdown-item">Thông tin tài khoản</a>
+                                        <a href="{{ route('user.profile') }}"> <button class="dropdown-item">Thông tin tài khoản</button> </a>
                                         <button id="vipMenu" class="dropdown-item">Nạp VIP</button>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                             @csrf
@@ -66,5 +66,4 @@
         <div id="mobile-menu-wrap"></div>
     </div>
 </header>
-
 <!-- Header End -->

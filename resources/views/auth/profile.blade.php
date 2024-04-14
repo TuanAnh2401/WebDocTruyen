@@ -19,10 +19,10 @@
     <!-- Profile Update Section Begin -->
     <section class="profile-update spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
+            <div class="row align-items-start">
+                <div class="col-lg-6">
                     <div class="login__form">
-                        <h3>Cập nhật thông tin tài khoản</h3>
+                        <h3>Thay đổi thông tin</h3>
                         <form method="POST" action="{{ route('user.profile.update') }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -44,17 +44,40 @@
                                 <span class="icon_mail"></span>
                             </div>
                             @if ($errors->any())
-                            <div class="alert alert-danger">
+                                <div class="alert alert-danger">
                                     @foreach ($errors->all() as $error)
-                                        {{ $error }}
+                                        {{ $error }}<br>
                                     @endforeach
-                            </div>
+                                </div>
                             @endif
                             <button type="submit" class="site-btn">Cập nhật thông tin</button>
-                            <a href="{{ route('password.change') }}" class="btn" style="background-color: #e53637; color: #fff;border-radius: 0;">Đổi mật khẩu</a>
+                            <a href="{{ route('password.change') }}" class="btn  btn-danger">Đổi mật khẩu</a>
                         </form>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="profile-info">
+                        <h3 class="text-white" style="margin-bottom: 20px;">Thông tin đăng ký</h3>
+                        @if ($name && $endDate)
+                            <table class="table">
+                                <tr>
+                                    <th>Tên dịch vụ</th>
+                                    <td>{{ $name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ngày kết thúc</th>
+                                    <td>{{ $endDate }}</td>
+                                </tr>
+                            </table>
+                            <form action="{{ route('cancel.subscription') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Hủy đăng ký</button>
+                            </form>
+                        @else
+                            <p class="text-white">Chưa đăng ký dịch vụ</p>
+                        @endif
+                    </div>
+                </div>                
             </div>
         </div>
     </section>
