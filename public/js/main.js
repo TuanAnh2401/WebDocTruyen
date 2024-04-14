@@ -97,6 +97,25 @@
         $("html, body").animate({ scrollTop: 0 }, "slow");
         return false;
      });
+      function toggleIsDelete(movieId, isDelete) {
+        // Gửi yêu cầu Ajax với phương thức POST
+        $.ajax({
+            url: '{{ route("toggle.is.delete", ["id" => ":id"]) }}'.replace(':id', movieId),
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                // Chuyển đổi trạng thái IsDelete để gửi
+                isDelete: isDelete ? 0 : 1 // Nếu isDelete là true, gửi 0; nếu không, gửi 1
+            },
+            success: function(response) {
+                // Nếu thành công, làm mới trang
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
 
 })(jQuery);
 
