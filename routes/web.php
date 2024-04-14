@@ -43,14 +43,13 @@ Route::put('/profile/update', [AuthController::class, 'updateProfile'])->name('u
 Route::get('/change-password', [AuthController::class, 'showPasswordChangeForm'])->name('password.change');
 Route::post('/password/update', [AuthController::class, 'resetPassword'])->name('password.reset.update');
 
-// Payment routes
 Route::post('/payment-vnpay', [VnPayController::class, 'create'])->name('payment.vnpay');
 Route::get('/return-vnpay', [VnPayController::class, 'handle'])->name('vnpay.return');
 
-// Admin routes
+Route::post('/cancel-subscription', [CancelSubscriptionController::class, 'cancel'])->name('cancel.subscription');
+
 Route::get('/admin', [AdminController::class, 'showIndexAdmin']);
 
-// Movie admin routes
 Route::get('/admin/movies', [MovieAdminController::class, 'index'])->name('admin.movies.index');
 Route::get('/admin/movies/create', [MovieAdminController::class, 'create'])->name('movies.create');
 Route::post('/admin/movies', [MovieAdminController::class, 'store'])->name('admin.movies.store');
