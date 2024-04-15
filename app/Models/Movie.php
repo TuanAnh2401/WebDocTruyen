@@ -63,5 +63,8 @@ class Movie extends Model
     public function comments()
     {
         return $this->hasMany(Comments::class);
+    }public function ctEpisodes()
+    {
+        return $this->hasMany(CtMovie::class, 'movie_id');
     }
 }

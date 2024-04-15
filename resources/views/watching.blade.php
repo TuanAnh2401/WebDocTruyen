@@ -9,7 +9,7 @@
                 <div class="breadcrumb__links">
                     <a href="/"><i class="fa fa-home"></i> Trang Chủ</a>
                     <span>{{ $movie->genres->implode('name', ', ') }}</span>
-                    <span>{{ $movie->name }}</span>
+                    <span> > {{ $movie->name }}</span>
                 </div>
             </div>
         </div>
@@ -34,10 +34,18 @@
                     <div class="section-title">
                         <h5>Danh sách tập phim</h5>
                     </div>
-                    @foreach($movie->episodes as $episode)
-                    <!-- Sử dụng data-attribute để lưu đường dẫn video của mỗi tập -->
-                    <a href="#" class="episode-link" data-src="{{ asset('videos/'.$episode->pivot->link) }}">{{ $episode->name }}</a>
+                    @foreach($movie->ctEpisodes as $ctEpisode)
+                        @php
+                            $isBlocked = $ctEpisode->isBlock ?? false;
+                        @endphp
+                        <a href="#" class="episode-link" data-src="{{ asset('videos/'.$ctEpisode->link) }}">
+                            @if($isBlocked)
+                                <span class="vip-badge">VIP</span>
+                            @endif
+                            {{ $ctEpisode->episode->name }}
+                        </a>
                     @endforeach
+
                 </div>
             </div>
         </div>
@@ -60,7 +68,6 @@
                         </div>
                     </div>
                     @endforeach
-                    @else
                     @endif
 
                 </div>
@@ -82,20 +89,49 @@
     </div>
 </section>
 <!-- Anime Section End -->
+
 <script>
-    // Lắng nghe sự kiện click trên mỗi tập
     var episodeLinks = document.querySelectorAll('.episode-link');
     episodeLinks.forEach(function(link) {
         link.addEventListener('click', function(event) {
             event.preventDefault();
             var videoSource = document.getElementById('video-source');
-            // Lấy đường dẫn video của tập được chọn
             var src = this.getAttribute('data-src');
-            // Cập nhật đường dẫn video
-            videoSource.src = src;
-            // Tải lại video
-            var player = document.getElementById('player');
-            player.load();
+            var isVip = this.querySelector('.vip-badge') !== null;
+            var isLoggedIn = '{{ Auth::check() }}';
+
+            if (isVip) {
+                if (isLoggedIn) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/has-vip-access',
+                        data: {
+                            _token: '{{ csrf_token() }}', 
+                            user_id: '{{ Auth::id() }}',
+                        },
+                        success: function(response) {
+                            var hasVipAccess = response.hasVipAccess;
+                            if (hasVipAccess) {
+                                videoSource.src = src;
+                                var player = document.getElementById('player');
+                                player.load();
+                            } else {
+                                alert('Vui lòng đăng ký dịch vụ VIP để xem tập này.');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                } else {
+                    alert('Vui lòng đăng nhập để xem tập VIP.');
+                    window.location.href = '/login';
+                }
+            } else {
+                videoSource.src = src;
+                var player = document.getElementById('player');
+                player.load();
+            }
         });
     });
 </script>

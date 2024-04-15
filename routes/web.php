@@ -77,3 +77,5 @@ Route::post('/admin/ct_movies/{id}/unblock', [CtMovieAdminController::class, 'un
 
 Route::get('/admin/users', [UserAdminController::class, 'index'])->name('admin.users.index');
 Route::post('/admin/users/{id}/update-role', [UserAdminController::class, 'updateRole'])->name('admin.users.updateRole');
+
+Route::post('/has-vip-access', [AuthController::class, 'hasVipAccess'])->name('has-vip-access');

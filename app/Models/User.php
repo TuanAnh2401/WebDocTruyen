@@ -50,6 +50,6 @@ class User extends Authenticatable
     }
     public function ctVips()
     {
-        return $this->hasMany(CtVip::class, 'user_id');
+        return $this->belongsToMany(CtVip::class, 'ct_vips');
     }
 }
