@@ -8,7 +8,6 @@
             <div class="col-lg-12">
                 <div class="breadcrumb__links">
                     <a href="/"><i class="fa fa-home"></i> Trang Chủ</a>
-                    <a href="./categories.html">Thể loại</a>
                     <span>{{ $movie->genres->implode('name', ', ') }}</span>
                     <span>{{ $movie->name }}</span>
                 </div>
