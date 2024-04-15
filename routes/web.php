@@ -8,6 +8,7 @@ use App\Http\Controllers\CancelSubscriptionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MovieAdminController;
 use App\Http\Controllers\CtMovieAdminController;
+use App\Http\Controllers\UserAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,8 @@ Route::get('/admin/movies/create', [MovieAdminController::class, 'create'])->nam
 Route::post('/admin/movies', [MovieAdminController::class, 'store'])->name('admin.movies.store');
 Route::post('admin/movies/{id}/delete', [MovieAdminController::class, 'delete'])->name('admin.movies.delete');
 Route::post('admin/movies/{id}/restore', [MovieAdminController::class, 'restore'])->name('admin.movies.restore');
+Route::post('/admin/movies/search', 'MovieAdminController@searchByName')->name('admin.movies.search');
+
 
 Route::get('/admin/ct_movies', [CtMovieAdminController::class, 'index'])->name('admin.ct_movies.index');
 Route::get('/admin/ct_movies/create', [CtMovieAdminController::class, 'create'])->name('admin.ct_movies.create');
@@ -63,3 +66,6 @@ Route::post('/admin/ct_movies/{id}/delete', [CtMovieAdminController::class, 'del
 Route::post('/admin/ct_movies/{id}/restore', [CtMovieAdminController::class, 'restore'])->name('admin.ct_movies.restore');
 Route::post('/admin/ct_movies/{id}/block', [CtMovieAdminController::class, 'block'])->name('admin.ct_movies.block');
 Route::post('/admin/ct_movies/{id}/unblock', [CtMovieAdminController::class, 'unblock'])->name('admin.ct_movies.unblock');
+
+Route::get('/admin/users', [UserAdminController::class, 'index'])->name('admin.users.index');
+Route::post('/admin/users/{id}/update-role', [UserAdminController::class, 'updateRole'])->name('admin.users.updateRole');

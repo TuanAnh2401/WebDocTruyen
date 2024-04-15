@@ -7,6 +7,14 @@
         <h1>List of CtMovies</h1>
         <!-- Add a button to navigate to the create ct_movie page -->
         <a href="{{ route('admin.ct_movies.create') }}" class="btn btn-primary mb-3">Add a new CtMovie</a>
+        <form action="{{ route('admin.ct_movies.index') }}" method="GET" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by name" value="{{ $search }}">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                </div>
+            </div>
+        </form>
         <table class="table">
             <thead>
                 <tr>

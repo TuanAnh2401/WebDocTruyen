@@ -76,6 +76,9 @@
             <li class="nav-item">
               <a href="{{ url('/admin/ct_movies') }}" class="nav-link">Tập Phim</a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/users') }}" class="nav-link">Tài khoản</a>
+        </li>
         </ul>
     </nav>
     

@@ -7,6 +7,17 @@
         <h1>List of Movies</h1>
         <!-- Add a button to navigate to the create movie page -->
         <a href="{{ route('movies.create') }}" class="btn btn-primary mb-3">Add a new movie</a>
+
+        <!-- Search bar -->
+        <form action="{{ route('admin.movies.index') }}" method="GET" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by name" value="{{ $search }}">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                </div>
+            </div>
+        </form>
+
         <table class="table">
             <thead>
                 <tr>
@@ -18,7 +29,7 @@
                     <th>Scores</th>
                     <th>Rating</th>
                     <th>Duration</th>
-                    <th>IsDetele</th> <!-- Thêm cột cho các hành động -->
+                    <th>Actions</th> <!-- Updated column for actions -->
                 </tr>
             </thead>
             <tbody>
