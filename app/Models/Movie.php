@@ -50,10 +50,18 @@ class Movie extends Model
     }
     public function episodes()
     {
-        return $this->belongsToMany(Episode::class, 'ct_movie');
+        return $this->belongsToMany(Episode::class, 'ct_movie', 'movie_id', 'episode_id')->withPivot('link');
     }
     public function genres()
     {
         return $this->belongsToMany(Genre::class, 'movie_genres');
+    }
+    public function filmformat()
+    {
+        return $this->belongsTo(FilmFormat::class, 'type_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
     }
 }

@@ -23,7 +23,7 @@
         <div class="anime__details__content">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="anime__details__pic set-bg" data-setbg="{{ $movie->avatar ? asset('img/trending/'.$movie->avatar) : asset('img/default-avatar.jpg') }}">
+                    <div class="anime__details__pic set-bg" data-setbg="{{ $movie->avatar ? asset('img/anime/'.$movie->avatar) : asset('img/default-avatar.jpg') }}">
                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                         <div class="view"><i class="fa fa-eye"></i> {{ $movie->views }}</div>
                     </div>
@@ -43,7 +43,7 @@
                                 <a href="#"><i class="fa fa-star"></i></a>
                                 <a href="#"><i class="fa fa-star-half-o"></i></a>
                             </div>
-                            <span>{{ $movie->scores }} Votes</span>
+                            <span>{{ $movie->scores }} Lượt đánh giá</span>
                         </div>
 
                     </div>
@@ -52,27 +52,27 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <ul>
-                                    <li><span>Type:</span> {{ $movie->filmformat->name }}</li>
-                                    <li><span>Studios:</span> {{ $movie->studio->name }}</li>
-                                    <li><span>Date aired:</span> {{ $movie->date_aired }}</li>
-                                    <li><span>Status:</span> {{ $movie->status->name }}</li>
-                                    <li><span>Genre:</span> {{ $movie->genres->implode('name', ', ') }}</li>
+                                    <li><span>Loại:</span> {{ $movie->filmformat->name }}</li>
+                                    <li><span>Hãng làm phim:</span> {{ $movie->studio->name }}</li>
+                                    <li><span>Ngày phát sóng:</span> {{ $movie->date_aired }}</li>
+                                    <li><span>Trạng thái:</span> {{ $movie->status->name }}</li>
+                                    <li><span>Thể loại:</span> {{ $movie->genres->implode('name', ', ') }}</li>
                                 </ul>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <ul>
-                                    <li><span>Scores:</span> {{ $movie->scores }}</li>
-                                    <li><span>Rating:</span> {{ $movie->rating }} / 10</li>
-                                    <li><span>Duration:</span> {{ $movie->duration }} min/ep</li>
-                                    <li><span>Quality:</span> {{ $movie->quality->name }}</li>
-                                    <li><span>Views:</span> {{ $movie->views }}</li>
+                                    <li><span>Điểm:</span> {{ $movie->scores }}</li>
+                                    <li><span>Xếp hạng:</span> {{ $movie->rating }} / 10</li>
+                                    <li><span>Thời lượng:</span> {{ $movie->duration }} min/ep</li>
+                                    <li><span>Chất lượng:</span> {{ $movie->quality->name }}</li>
+                                    <li><span>Lượt xem:</span> {{ $movie->views }}</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="anime__details__btn">
-                        <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                        <a href="{{ route('movies.watching', ['id' => $movie->id]) }}" class="watch-btn"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                        <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Theo dõi</a>
+                        <a href="{{ route('movies.watching', ['id' => $movie->id]) }}" class="watch-btn"><span>Xem ngay</span> <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
             <div class="col-lg-8 col-md-8">
                 <div class="anime__details__review">
                     <div class="section-title">
-                        <h5>Reviews</h5>
+                        <h5>Đánh giá</h5>
                     </div>
                     @if(isset($movie->comments) && $movie->comments->count() > 0)
                     @foreach($movie->comments as $comment)
@@ -96,7 +96,6 @@
                     </div>
                     @endforeach
                     @else
-                    <p>No comments available.</p>
                     @endif
 
 
@@ -104,13 +103,13 @@
                 @if(auth()->check())
                 <div class="anime__details__form">
                     <div class="section-title">
-                        <h5>Your Comment</h5>
+                        <h5>Bình luận của bạn</h5>
                     </div>
                     <form id="comment-form" action="{{ route('comments.store') }}" method="POST">
                         @csrf
-                        <textarea id="comment-content" name="content" placeholder="Your Comment"></textarea>
+                        <textarea id="comment-content" name="content" placeholder="Bình luận của bạn"></textarea>
                         <input type="hidden" name="movie_id" value="{{ $movie->id }}">
-                        <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                        <button type="submit"><i class="fa fa-location-arrow"></i> Đánh giá</button>
                     </form>
                 </div>
                 @endif
@@ -120,7 +119,7 @@
             <div class="col-lg-4 col-md-4">
                 <div class="anime__details__sidebar">
                     <div class="section-title">
-                        <h5>you might like...</h5>
+                        <h5>bạn có thể thích...</h5>
                     </div>
                     <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('img/sidebar/tv-1.jpg') }}">
                         <div class="ep">18 / ?</div>
