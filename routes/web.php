@@ -2,8 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\VnPayController;
+use App\Models\Movie;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\CancelSubscriptionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MovieAdminController;
@@ -21,10 +26,8 @@ use App\Http\Controllers\UserAdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 
+Route::get('/', [MovieController::class, 'index']);
 // Authentication routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -36,7 +39,7 @@ Route::get('/login/{provider}/callback', [SocialAuthController::class, 'handlePr
 Route::get('/forgot-password', [AuthController::class, 'showPasswordResetForm'])->name('password.request');
 Route::post('/forgot-password', [AuthController::class, 'sendPasswordResetEmail'])->name('password.email');
 Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
-Route::post('/password/reset', [AuthController::class, 'updatePassword'])->name('password.update');
+Route::post('/password/reset', [AuthController::class, 'updatePassword'])->name('password.resetUpdate');
 
 // Profile routes
 Route::get('/profile', [AuthController::class, 'showProfile'])->name('user.profile');
@@ -47,6 +50,10 @@ Route::post('/password/update', [AuthController::class, 'resetPassword'])->name(
 Route::post('/payment-vnpay', [VnPayController::class, 'create'])->name('payment.vnpay');
 Route::get('/return-vnpay', [VnPayController::class, 'handle'])->name('vnpay.return');
 
+Route::get('/movies/{id}/watching', [MovieController::class, 'watching'])->name('movies.watching');
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('/genres/{id}', [GenreController::class, 'show'])->name('genres.show');
+Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
 Route::post('/cancel-subscription', [CancelSubscriptionController::class, 'cancel'])->name('cancel.subscription');
 
 Route::get('/admin', [AdminController::class, 'showIndexAdmin']);
@@ -66,6 +73,7 @@ Route::post('/admin/ct_movies/{id}/delete', [CtMovieAdminController::class, 'del
 Route::post('/admin/ct_movies/{id}/restore', [CtMovieAdminController::class, 'restore'])->name('admin.ct_movies.restore');
 Route::post('/admin/ct_movies/{id}/block', [CtMovieAdminController::class, 'block'])->name('admin.ct_movies.block');
 Route::post('/admin/ct_movies/{id}/unblock', [CtMovieAdminController::class, 'unblock'])->name('admin.ct_movies.unblock');
+
 
 Route::get('/admin/users', [UserAdminController::class, 'index'])->name('admin.users.index');
 Route::post('/admin/users/{id}/update-role', [UserAdminController::class, 'updateRole'])->name('admin.users.updateRole');

@@ -4,7 +4,7 @@ namespace App\Models; // Ensure correct namespace
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Movie;
 class CtMovie extends Model
 {
     use HasFactory;
