@@ -6,25 +6,37 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\CtVip;
 use App\Models\Price;
+use App\Models\Discount;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class VnPayController extends Controller
 {
     public function create(Request $request)
     {
-        if ($request->amount == 0) {
-            return redirect()->back()->withErrors(['error' => 'Hãy chọn gói dịch vụ']);
-        }
-        
         $price = Price::where('id', $request->price_id)->where('is_deleted', false)->first();
-        if ($price) {
-            return redirect()->back()->withErrors(['warning' => 'Đã đăng ký gói dịch vụ, vui lòng hủy gói trước']);
+        if (!$price) {
+            return response()->json(['error' => 'Hãy chọn gói dịch vụ'], 422);
         }
         
-        $request->session()->put('price_id', $request->price_id); // Lưu price_id vào session
+        $amount = $price->price_sale ?? $price->price;
+        $userId = Auth::id();
+
+        $CtVip = CtVip::where('user_id', $userId)->where('is_deleted', false)->first();
+        if ($CtVip) {
+            return response()->json(['warning' => 'Đã đăng ký gói dịch vụ, vui lòng hủy gói trước'], 422);
+        }
+
+        $discount = Discount::where('name', $request->discountCode)->where('is_deleted', false)->first();
+        if ($discount) {
+            $discountAmount =  $amount * $discount->price / 100;
+            $amount -= $discountAmount;
+        }
+
+        $request->session()->put('price_id', $request->price_id);
 
         $vnp_Returnurl = env('VNP_RETURNURL');
         $vnp_TmnCode = env('VNP_TMNCODE');
@@ -34,7 +46,7 @@ class VnPayController extends Controller
         $vnp_TxnRef = uniqid();
         $vnp_OrderInfo = "Thanh toán hóa đơn";
         $vnp_OrderType = 'billpayment';
-        $vnp_Amount = $request->amount * 100;
+        $vnp_Amount = $amount * 100;
         $vnp_Locale = 'vn';
         $vnp_BankCode = $request->bank_code;
         $vnp_IpAddr = $request->ip();
@@ -68,8 +80,9 @@ class VnPayController extends Controller
             $vnp_Url .= '&vnp_SecureHash=' . $vnpSecureHash;
         }
 
-        return redirect()->away($vnp_Url);
+        return response()->json(['redirect_url' => $vnp_Url]);
     }
+
 
     public function handle(Request $request)
     {
@@ -94,13 +107,15 @@ class VnPayController extends Controller
                     'end_date' => $endDate,
                     'price' => $newMoney,
                 ]);
-                
-                return Redirect::to('/')->with('success', 'Thanh toán thành công');
+
+                Session::flash('success', 'Thanh toán thành công');
             } else {
-                return Redirect::to('/')->with('error', 'Người dùng không tồn tại');
+                Session::flash('error', 'Người dùng không tồn tại');
             }
         } else {
-            return Redirect::to('/')->with('error', 'Lỗi trong quá trình thanh toán');
+            Session::flash('error', 'Lỗi trong quá trình thanh toán');
         }
+
+        return Redirect::to('/');
     }
 }

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+    
+use App\Models\User;
+use App\Models\Role;
+
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
-use Illuminate\Support\Str;
 
 class SocialAuthController extends Controller
 {
@@ -34,8 +37,14 @@ class SocialAuthController extends Controller
                 'password' => bcrypt($randomPassword)
             ]
         );
-
+        if (!$user->role_id) {
+            $userRole = Role::where('name', 'user')->first();
+            if ($userRole) {
+                $user->role_id = $userRole->id;
+                $user->save();
+            }
+        }   
         Auth::login($user);
-        return redirect('/')->with('success', 'Đăng nhập thành công!');
+        return redirect('/');
     }
 }
