@@ -35,7 +35,7 @@ Route::get('/login/{provider}/callback', [SocialAuthController::class, 'handlePr
 Route::get('/forgot-password', [AuthController::class, 'showPasswordResetForm'])->name('password.request');
 Route::post('/forgot-password', [AuthController::class, 'sendPasswordResetEmail'])->name('password.email');
 Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
-Route::post('/password/reset', [AuthController::class, 'updatePassword'])->name('password.update');
+Route::post('/password/reset', [AuthController::class, 'updatePassword'])->name('password.resetUpdate');
 
 // Profile routes
 Route::get('/profile', [AuthController::class, 'showProfile'])->name('user.profile');

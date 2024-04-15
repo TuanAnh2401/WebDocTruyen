@@ -22,7 +22,7 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Đổi mật khẩu</h3>
-                        <form method="POST" action="{{ route('password.update') }}">
+                        <form method="POST" action="{{ route('password.resetUpdate') }}">
                             @csrf
                             @if ($errors->any())
                             <div class="alert alert-danger">

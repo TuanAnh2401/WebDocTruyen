@@ -216,7 +216,6 @@ class AuthController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
-
-        return redirect()->route('home')->with('success', 'Mật khẩu đã được cập nhật thành công');
+        return redirect()->route('user.profile')->with('success', 'Mật khẩu đã được cập nhật thành công!');
     }
 }
