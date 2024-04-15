@@ -148,33 +148,42 @@
     </div>
 </section>
 <script>
-    // Xử lý khi form được submit và comment được thêm thành công
-    $(document).on('submit', '#comment-form', function(event) {
-        // Ngăn chặn hành động mặc định của form
-        event.preventDefault();
+    document.addEventListener("DOMContentLoaded", function() {
+        $(document).ready(function() {
+        // Xử lý khi form được submit và comment được thêm thành công
+        $(document).on('submit', '#comment-form', function(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của form
+            var formData = $(this).serialize(); // Lấy dữ liệu từ form
 
-        // Lấy dữ liệu từ form
-        var formData = $(this).serialize();
-
-        // Gửi yêu cầu tạo comment mới
-        $.ajax({
-            url: $(this).attr('action'),
-            method: 'POST',
-            data: formData,
-            success: function(response) {
-                // Thêm comment mới vào khung comments
-                $('.anime__details__review').prepend(response); // response chứa HTML của comment mới
-                // Xóa nội dung của form sau khi comment được thêm thành công
-                $('#comment-content').val('');
-            },
-            error: function(xhr, status, error) {
-                // Xử lý lỗi khi thêm comment
-            }
+            // Gửi yêu cầu tạo comment mới
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    $('#comment-content').val(''); // Xóa nội dung của form sau khi comment được thêm thành công
+                    reloadComments(); // Load lại phần khung comments
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi khi thêm comment
+                }
+            });
         });
+
+        // Load lại phần khung comments khi cần
+        function reloadComments() {
+            $.ajax({
+                url: window.location.href + ' .anime__details__review', // Chỉ load phần khung comments
+                success: function(data) {
+                    $('.anime__details__review').html($(data).find('.anime__details__review').html());
+                }
+            });
+        }
     });
+    });
+
+    // Xử lý khi form được submit và comment được thêm thành công
 </script>
-
-
 
 <!-- Anime Section End -->
 @endsection

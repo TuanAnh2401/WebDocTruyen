@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CtMovie extends Model
 {
     use HasFactory;
+
+    
 }
