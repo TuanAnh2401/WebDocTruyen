@@ -43,9 +43,17 @@ class Movie extends Model
     {
         return $this->belongsTo(Quality::class);
     }
-
+    
     public function type()
     {
         return $this->belongsTo(FilmFormat::class, 'type_id');
+    }
+    public function episodes()
+    {
+        return $this->belongsToMany(Episode::class, 'ct_movie');
+    }
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'movie_genres');
     }
 }

@@ -18,9 +18,9 @@
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Homepage</a></li>
+                            <li class="active"><a href="./">Trang chủ</a></li>
                             <li>
-                                <a href="#">Categories <span class="arrow_carrot-down"></span></a>
+                                <a href="#">Thể loại <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     @foreach ($genres as $genre)
                                     <li>
@@ -29,8 +29,8 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Our Blog</a></li>
-                            <li><a href="#">Contacts</a></li>
+                            <li><a href="./blog.html">Tin tức</a></li>
+                            <li><a href="#">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>

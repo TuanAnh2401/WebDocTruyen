@@ -13,14 +13,13 @@
                             <div class="label">{{ $slide->name }}</div>
                             <h2>{{ $slide->name }}</h2>
                             <p>{{ $slide->detail }}</p>
-                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                            <a href="#"><span>Xem ngay</span> <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
             @endforeach
             @else
-            <p>No slides found</p>
             @endif
         </div>
     </div>
@@ -42,12 +41,12 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="section-title">
-                                <h4>Trending Now</h4>
+                                <h4>Đang là xu hướng</h4>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                <a href="#" class="primary-btn">Xem tất cả <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -81,12 +80,12 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="section-title">
-                                <h4>Popular Shows</h4>
+                                <h4>Bộ phim nổi tiếng</h4>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                <a href="#" class="primary-btn">Xem tất cả<span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -100,8 +99,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
                                 </div>
@@ -116,8 +115,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
                                 </div>
@@ -132,8 +131,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
                                 </div>
@@ -148,8 +147,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Rurouni Kenshin: Meiji Kenkaku Romantan</a></h5>
                                 </div>
@@ -164,8 +163,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Mushishi Zoku Shou 2nd Season</a></h5>
                                 </div>
@@ -180,8 +179,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Monogatari Series: Second Season</a></h5>
                                 </div>
@@ -193,12 +192,12 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="section-title">
-                                <h4>Recently Added Shows</h4>
+                                <h4>Bộ phim được thêm gần đây</h4>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                <a href="#" class="primary-btn">Xem tất cả <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -212,8 +211,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Great Teacher Onizuka</a></h5>
                                 </div>
@@ -228,8 +227,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Fate/stay night Movie: Heaven's Feel - II. Lost</a></h5>
                                 </div>
@@ -244,8 +243,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Mushishi Zoku Shou: Suzu no Shizuku</a></h5>
                                 </div>
@@ -260,8 +259,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Fate/Zero 2nd Season</a></h5>
                                 </div>
@@ -276,8 +275,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Kizumonogatari II: Nekket su-hen</a></h5>
                                 </div>
@@ -292,8 +291,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                                 </div>
@@ -305,12 +304,12 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="section-title">
-                                <h4>Live Action</h4>
+                                <h4>Hành động trực tiếp</h4>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                <a href="#" class="primary-btn">Xem tất cả <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -324,8 +323,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Shouwa Genroku Rakugo Shinjuu</a></h5>
                                 </div>
@@ -340,8 +339,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Mushishi Zoku Shou 2nd Season</a></h5>
                                 </div>
@@ -356,8 +355,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Mushishi Zoku Shou: Suzu no Shizuku</a></h5>
                                 </div>
@@ -372,8 +371,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                                 </div>
@@ -388,8 +387,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Fate/stay night Movie: Heaven's Feel - II. Lost</a></h5>
                                 </div>
@@ -404,8 +403,8 @@
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
+                                        <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                     </ul>
                                     <h5><a href="#">Kizumonogatari II: Nekketsu-hen</a></h5>
                                 </div>
@@ -418,13 +417,13 @@
                 <div class="product__sidebar">
                     <div class="product__sidebar__view">
                         <div class="section-title">
-                            <h5>Top Views</h5>
+                            <h5>Lượt xem hàng đầu</h5>
                         </div>
                         <ul class="filter__controls">
-                            <li class="active" data-filter="*">Day</li>
-                            <li data-filter=".week">Week</li>
-                            <li data-filter=".month">Month</li>
-                            <li data-filter=".years">Years</li>
+                            <li class="active" data-filter="*">Ngày</li>
+                            <li data-filter=".week">Tuần</li>
+                            <li data-filter=".month">Tháng</li>
+                            <li data-filter=".years">Năm</li>
                         </ul>
                         <div class="filter__gallery">
                             <div class="product__sidebar__view__item set-bg mix day years" data-setbg="img/sidebar/tv-1.jpg">
@@ -456,7 +455,7 @@
                     </div>
                     <div class="product__sidebar__comment">
                         <div class="section-title">
-                            <h5>New Comment</h5>
+                            <h5>Bình luận mới</h5>
                         </div>
                         <div class="product__sidebar__comment__item">
                             <div class="product__sidebar__comment__item__pic">
@@ -464,8 +463,8 @@
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
-                                    <li>Active</li>
-                                    <li>Movie</li>
+                                    <li>Tích cực</li>
+                                        <li>Bộ phim</li>
                                 </ul>
                                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                                 <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
@@ -477,8 +476,8 @@
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
-                                    <li>Active</li>
-                                    <li>Movie</li>
+                                    <li>Tích cực</li>
+                                    <li>Bộ phim</li>
                                 </ul>
                                 <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
                                 <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
@@ -490,8 +489,8 @@
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
-                                    <li>Active</li>
-                                    <li>Movie</li>
+                                    <li>Tích cực</li>
+                                    <li>Bộ phim</li>
                                 </ul>
                                 <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
                                 <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
@@ -503,8 +502,8 @@
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
-                                    <li>Active</li>
-                                    <li>Movie</li>
+                                    <li>Tích cực</li>
+                                    <li>Bộ phim</li>
                                 </ul>
                                 <h5><a href="#">Monogatari Series: Second Season</a></h5>
                                 <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
