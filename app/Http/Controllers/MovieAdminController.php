@@ -104,8 +104,7 @@ class MovieAdminController extends Controller
 
             // Redirect về trang danh sách phim với thông báo thành công
             return redirect()->route('admin.movies.index')->with('success', 'Movie deleted successfully!');
-
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // Nếu xảy ra lỗi không mong muốn, redirect về trang trước với thông báo lỗi
             return redirect()->back()->with('error', 'Failed to delete movie. Please try again later.');
         }
@@ -124,11 +123,81 @@ class MovieAdminController extends Controller
 
             // Redirect về trang danh sách phim với thông báo thành công
             return redirect()->route('admin.movies.index')->with('success', 'Movie deleted successfully!');
-
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // Nếu xảy ra lỗi không mong muốn, redirect về trang trước với thông báo lỗi
             return redirect()->back()->with('error', 'Failed to delete movie. Please try again later.');
         }
     }
+    public function edit($id)
+    {
+        try {
+            // Tìm bộ phim cần chỉnh sửa
+            $movie = Movie::findOrFail($id);
 
+            // Retrieve the list of studios, statuses, qualities, and types from the database
+            $studios = Studio::all();
+            $statuses = Status::all();
+            $qualities = Quality::all();
+            $film_formats = FilmFormats::all();
+
+            // Return the 'admin.movies.edit' view along with the movie and lists of studios, statuses, qualities, and types
+            return view('admin.movies.edit', ['movie' => $movie, 'studios' => $studios, 'statuses' => $statuses, 'qualities' => $qualities, 'types' => $film_formats]);
+        } catch (\Exception $e) {
+            // Nếu có lỗi không mong muốn, redirect về trang trước với thông báo lỗi
+            return redirect()->back()->with('error', 'Failed to fetch movie details. Please try again later.');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            // Tìm bộ phim cần cập nhật
+            $movie = Movie::findOrFail($id);
+
+            // Validate the request data
+            $request->validate([
+                'name' => 'required',
+                'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'name_call' => 'required',
+                'studio' => 'required|exists:studios,id',
+                'date_aired' => 'required|date',
+                'status' => 'required|exists:statuses,id',
+                'quality' => 'required|exists:qualities,id',
+                'type' => 'required|exists:film_formats,id',
+                'quantity' => 'required|integer|min:1',
+            ]);
+
+            // Lấy tên mới của bộ phim
+            $movie->name = $request->name;
+
+            // Nếu có tệp ảnh được tải lên, xử lý và lưu tệp ảnh mới
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $avatarName = 'movie_' . time() . '.' . $avatar->getClientOriginalExtension();
+                $avatar->move(public_path('img/anime'), $avatarName);
+                $movie->avatar = $avatarName;
+            }
+
+            // Cập nhật các thông tin khác của bộ phim
+            $movie->name_call = $request->name_call;
+            $movie->studio_id = $request->studio;
+            $movie->date_aired = $request->date_aired;
+            $movie->status_id = $request->status;
+            $movie->quality_id = $request->quality;
+            $movie->type_id = $request->type;
+            $movie->quantity = $request->quantity;
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+            $movie->save();
+
+            // Redirect về trang danh sách phim với thông báo thành công
+            return redirect()->route('admin.movies.index')->with('success', 'Movie updated successfully!');
+        } catch (ValidationException $e) {
+            // Nếu validation thất bại, redirect về trang trước với thông báo lỗi
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            // Nếu có lỗi không mong muốn, redirect về trang trước với thông báo lỗi
+            return redirect()->back()->with('error', 'Failed to update movie. Please try again later.');
+        }
+    }
 }

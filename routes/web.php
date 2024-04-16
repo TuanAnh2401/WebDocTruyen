@@ -64,6 +64,9 @@ Route::post('/admin/movies', [MovieAdminController::class, 'store'])->name('admi
 Route::post('admin/movies/{id}/delete', [MovieAdminController::class, 'delete'])->name('admin.movies.delete');
 Route::post('admin/movies/{id}/restore', [MovieAdminController::class, 'restore'])->name('admin.movies.restore');
 Route::post('/admin/movies/search', 'MovieAdminController@searchByName')->name('admin.movies.search');
+Route::get('/movies/{id}/edit', [MovieAdminController::class, 'edit'])->name('admin.movies.edit');
+Route::put('/movies/{id}', [MovieAdminController::class, 'update'])->name('admin.movies.update');
+
 
 
 Route::get('/admin/ct_movies', [CtMovieAdminController::class, 'index'])->name('admin.ct_movies.index');
