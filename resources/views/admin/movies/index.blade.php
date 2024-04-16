@@ -26,8 +26,8 @@
                     <th>Studio</th>
                     <th>Trạng thái</th>
                     <th>Ngày phát sóng</th>
-                    <th>Điểm</th>
-                    <th>Xếp hạng</th>
+                    <th>Chất lượng</th>
+                    <th>Loại phim</th>
                     <th>Thời lượng</th>
                     <th>Hành động</th>
                 </tr>
