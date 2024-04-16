@@ -4,16 +4,16 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
-        <h1>List of Movies</h1>
+        <h1>Danh sách phim</h1>
         <!-- Add a button to navigate to the create movie page -->
-        <a href="{{ route('movies.create') }}" class="btn btn-primary mb-3">Add a new movie</a>
+        <a href="{{ route('movies.create') }}" class="btn btn-primary mb-3">Thêm phim mới</a>
 
         <!-- Search bar -->
         <form action="{{ route('admin.movies.index') }}" method="GET" class="mb-3">
             <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search by name" value="{{ $search }}">
+                <input type="text" name="search" class="form-control" placeholder="Tìm kiếm theo tên" value="{{ $search }}">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                    <button type="submit" class="btn btn-outline-secondary">Tìm kiếm</button>
                 </div>
             </div>
         </form>
@@ -21,15 +21,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Avatar</th>
+                    <th>Tên</th>
+                    <th>Hình ảnh</th>
                     <th>Studio</th>
-                    <th>Status</th>
-                    <th>Date Aired</th>
-                    <th>Quality</th>
-                    <th>Type</th>
-                    <th>Quantity</th>
-                    <th>Actions</th> <!-- Updated column for actions -->
+                    <th>Trạng thái</th>
+                    <th>Ngày phát sóng</th>
+                    <th>Điểm</th>
+                    <th>Xếp hạng</th>
+                    <th>Thời lượng</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,7 +75,7 @@
 </div>
 <script>
     function confirmDelete(movieId) {
-        if (confirm('Are you sure you want to delete this movie?')) {
+        if (confirm('Bạn có chắc chắn muốn xóa phim này?')) {
             document.getElementById('delete_form_' + movieId).submit();
         }
     }

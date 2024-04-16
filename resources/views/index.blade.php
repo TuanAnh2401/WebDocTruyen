@@ -57,7 +57,9 @@
                                 <a href="{{ route('movies.show', ['id' => $movie->id]) }}"> <!-- Thêm href và chỉ định URL của route -->
                                     <div class="product__item__pic set-bg" data-setbg="{{ $movie->avatar ? asset('img/anime/' . $movie->avatar) : 'img/default-avatar.jpg' }}">
                                         <div class="ep">{{ $movie->episodes->count() }} / {{ $movie->quantity }}</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                                        @if(isset($movie->comments))
+                                            <div class="comment"><i class="fa fa-comments"></i> {{ $movie->comments->count() > 0 ? $movie->comments->count() : 0 }}</div>
+                                        @endif
                                         <div class="view"><i class="fa fa-eye"></i> {{ $movie->views }}</div>
                                     </div>
                                     <div class="product__item__text">

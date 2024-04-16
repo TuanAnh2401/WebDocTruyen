@@ -218,4 +218,15 @@ class AuthController extends Controller
         $user->save();
         return redirect()->route('user.profile')->with('success', 'Mật khẩu đã được cập nhật thành công!');
     }
+    public function hasVipAccess(Request $request)
+    {
+        $user_id = $request->input('user_id');
+    
+        $ctVip = CtVip::where('user_id', $user_id)
+            ->where('is_deleted', false)
+            ->where('end_date', '>', now())
+            ->exists();
+    
+        return response()->json(['hasVipAccess' => $ctVip]);
+    }
 }

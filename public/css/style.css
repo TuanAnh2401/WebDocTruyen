@@ -2446,3 +2446,21 @@ ol {
     color: #fff;
 }
 
+.episode-link {
+    position: relative; 
+}
+
+.vip-badge {
+    font-size: 8px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f39c12; 
+    border-radius: 3px;
+    padding: 2px 5px;
+    position: absolute; 
+    top: 0; 
+    right: 0;
+}
+
+
+

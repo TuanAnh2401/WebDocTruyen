@@ -18,5 +18,6 @@ class CtVip extends Model
         'end_date',
         'is_deleted',
     ];
+    
 }
 
