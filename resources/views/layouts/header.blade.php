@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a href="./">
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset('img/logo.png') }}" alt="">
                     </a>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./">Trang chủ</a></li>
+                            <li class="active"><a href="{{ route('home') }}">Trang chủ</a></li>
                             <li>
                                 <a href="#">Thể loại <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
@@ -29,7 +29,7 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Tin tức</a></li>
+                            <li><a href="#">Tin tức</a></li>
                             <li><a href="#">Liên hệ</a></li>
                         </ul>
                     </nav>

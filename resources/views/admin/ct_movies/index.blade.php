@@ -4,25 +4,25 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
-        <h1>List of CtMovies</h1>
+        <h1>Danh sách các tập phim</h1>
         <!-- Add a button to navigate to the create ct_movie page -->
-        <a href="{{ route('admin.ct_movies.create') }}" class="btn btn-primary mb-3">Add a new CtMovie</a>
+        <a href="{{ route('admin.ct_movies.create') }}" class="btn btn-primary mb-3">Tạo mới tập phim</a>
         <form action="{{ route('admin.ct_movies.index') }}" method="GET" class="mb-3">
             <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search by name" value="{{ $search }}">
+                <input type="text" name="search" class="form-control" placeholder="Tìm kiếm theo tên" value="{{ $search }}">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                    <button type="submit" class="btn btn-outline-secondary">Tìm kiếm</button>
                 </div>
             </div>
         </form>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Movie</th>
-                    <th>Episode</th>
-                    <th>Link</th>
-                    <th>Is Blocked</th>
-                    <th>Is Deleted</th>
+                    <th>Phim</th>
+                    <th>Tập</th>
+                    <th>Đường dẫn</th>
+                    <th>Vip</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>

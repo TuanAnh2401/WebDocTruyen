@@ -24,8 +24,10 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="anime__details__pic set-bg" data-setbg="{{ $movie->avatar ? asset('img/anime/'.$movie->avatar) : asset('img/default-avatar.jpg') }}">
-                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                        <div class="view"><i class="fa fa-eye"></i> {{ $movie->views }}</div>
+                        @if(isset($movie->comments))
+                             <div class="comment"><i class="fa fa-comments"></i> {{ $movie->comments->count() > 0 ? $movie->comments->count() : 0 }}</div>
+                        @endif
+                     <div class="view"><i class="fa fa-eye"></i> {{ $movie->views }}</div>
                     </div>
                 </div>
                 <div class="col-lg-9">

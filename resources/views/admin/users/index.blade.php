@@ -4,13 +4,13 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
-        <h1>List of Users</h1>
+        <h1>Danh sách tài khoản</h1>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Tên</th>
                     <th>Email</th>
-                    <th>Role</th>
+                    <th>Quyền</th>
                 </tr>
             </thead>
             <tbody>
